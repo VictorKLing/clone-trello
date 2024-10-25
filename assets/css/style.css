@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+li{
+    list-style: none;
+}
+img{
+    display: block;
+    max-width: 100%;
+}
+a{
+    text-decoration: none;
+}
+
+:root {
+    --color1: #f0f6fc;
+    --color2: #010409;
+    --color3: #0D1117;
+    --color4: #101204;
+    --color5: #22272B;
+    --color6: #282F28;
+    --color7: #1f6feb;
+}
+
+body{
+    background-color: var(--color2);
+}
+li,p,h1,h2,h3,h4,h5,a, i{
+    color: var(--color1);
+}
+
+.container{
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*header*/
+.header-top-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+.header-top-content div{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.header-top-content div ul{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+/*header*/
+
+/*taregas*/
+.all-tasks-content {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    gap: 12px;
+    height: calc(100vh - 120px);
+}
+.all-tasks-content::-webkit-scrollbar {
+    height: 16px;
+}
+
+.all-tasks-content::-webkit-scrollbar-thumb {
+    background-color: var(--color1);
+    border-radius: 10px;
+}
+
+.task-column{
+    flex: 0 0 272px;
+    width: 272px;
+}
+.task-column-content{
+    background-color: var(--color3);
+    padding: 16px 8px;
+    border-radius: 8px;
+}
+.task-column-content h1{
+    font-size: 14px;
+}
+.task-column-name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 14px;
+    width: 100%;
+    padding: 0px 12px;
+}
+.task-column-name div{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.task-column-all-tasks{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+.task-column-task{
+    background-color: var(--color5);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+.task-column-add{
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+.task-column-add.desativo{
+    display: none;
+}
+
+.task-column-add div{
+    display: flex;
+    align-items: center;
+    padding: 8px 54px 6px 12px;
+    border-radius: 8px;
+    transition: .3s;
+
+}
+.task-column-add div:hover{
+    background-color: var(--color6);
+}
+
+.task-column-add .fa-images{
+    margin-left: auto;
+    padding: 8px;
+    border-radius: 8px;
+    transition: .3s;
+}
+.task-column-add .fa-images:hover{
+    background-color: var(--color6);
+}
+.task-column-add h1{
+    margin-left: 12px;
+}
+.task-column-submit{
+    display: none;
+}
+.task-column-submit.ativo{
+    display: block;
+}
+.task-column-submit textarea{
+    width: 100%;
+    background-color: var(--color5);
+    border: none;
+    height: 56px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--color1);
+    margin-top: 12px;
+    resize: none;
+}
+.task-column-submit textarea:focus {
+    outline: none;
+}
+.task-column-submit div{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 14px;
+}
+.task-column-submit a{
+    background-color: var(--color7);
+    padding: 6px 12px;
+    color: var(--color4);
+    border-radius: 4px;
+    display: inline-block;
+}
+.add-list{
+    width: 272px;
+}
+.add-list-create{
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    transition: .3s;
+    background-color: var(--color5);
+}
+.add-list-create.desativo{
+    display: none;
+}
+.add-list-create:hover{
+    background-color: var(--color6);
+}
+.add-list-create h1,
+.add-list-create i{
+    font-size: 14px;
+}
+.add-list-create h1{
+    margin-left: 12px;
+}
+.add-list-name{
+    background-color: var(--color3);
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    display: none;
+}
+.add-list-name.ativo{
+    display: block;
+}
+.add-list-name textarea{
+    width: 100%;
+    background-color: var(--color5);
+    border: none;
+    height: 32px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: var(--color1);
+    resize: none;
+}
+.add-list-name textarea:focus{
+    outline: none;
+}
+.task-list-submit-add{
+    background-color: var(--color7);
+    padding: 6px 12px;
+    color: var(--color4);
+    border-radius: 4px;
+    display: inline-block;
+    
+}
+.add-list-name div{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+}
+/*tarefas*/
