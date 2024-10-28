@@ -11,6 +11,15 @@ botaoAdicionarOutraLista.addEventListener('click', () => {
     botaoAdicionarOutraLista.classList.add('desativo')
     nomeLista.classList.add('ativo')
     formNomeLista.focus()
+    const submitTask = document.querySelectorAll('.task-column-submit');
+    const botaoAdicionarTask = document.querySelectorAll('.task-column-add');
+    submitTask.forEach(task => {
+        task.classList.remove('ativo');
+    });
+    botaoAdicionarTask.forEach(botao => {
+        botao.classList.remove('desativo');
+    });
+    
 })
 
 // fecha o botão para dar nome à nova lista
@@ -56,6 +65,7 @@ adicioarLista.addEventListener('click', (event) => {
     
     allTasksContent.appendChild(novaLista);
     allTasksContent.appendChild(addListContainer);
+    formNomeLista.focus()
     formNomeLista.value = ""; // Limpa o textarea
 });
 
@@ -66,7 +76,22 @@ allTasksContent.addEventListener('click', function(event) {
         const botaoAdicionarTask = taskColumn.querySelector('.task-column-add');
         const submitTask = taskColumn.querySelector('.task-column-submit');
         const taskName = taskColumn.querySelector('.task-column-submit-form');
-
+        // remove o textarea do nome da lista quando apertar para criar uma nova tarefa
+        const nomeLista = document.querySelectorAll('.add-list-name')
+        nomeLista.forEach(botao => {
+            botao.classList.remove('ativo');
+        });
+        const botaoAdicionarOutraLista = document.querySelector('.add-list-create')
+        botaoAdicionarOutraLista.classList.remove('desativo');
+        
+        const allSubmitTask = document.querySelectorAll('.task-column-submit');
+        allSubmitTask.forEach(botao => {
+            botao.classList.remove('ativo');
+        });
+        const allBotaoAdicionarTask = document.querySelectorAll('.task-column-add');
+        allBotaoAdicionarTask.forEach(botao => {
+            botao.classList.remove('desativo');
+        });
         botaoAdicionarTask.classList.add('desativo');
         submitTask.classList.add('ativo');
         taskName.focus();
@@ -91,13 +116,23 @@ allTasksContent.addEventListener('click', function(event) {
 
         const createNewTask = document.createElement("div");
         createNewTask.classList.add('task-column-task');
+        createNewTask.setAttribute('draggable', 'true');
         const contentNewTask = document.createElement("h1");
         contentNewTask.textContent = taskName.value;
-
+        
         createNewTask.appendChild(contentNewTask);
         currentTaskList.appendChild(createNewTask);
 
         taskName.value = "";
         taskName.focus();
+        const allTask = document.querySelectorAll('.task-column-task');
+        allTask.forEach(task => {
+            task.addEventListener('dragstart', (event) => {
+                console.log('arraste iniciado');
+            });
+        });
     }
 });
+
+// arrasta e solta
+
