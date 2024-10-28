@@ -67,6 +67,7 @@ adicioarLista.addEventListener('click', (event) => {
     allTasksContent.appendChild(addListContainer);
     formNomeLista.focus()
     formNomeLista.value = ""; // Limpa o textarea
+    
 });
 
 // Delegação de eventos para adicionar tarefas nas colunas existentes ou novas
@@ -132,7 +133,44 @@ allTasksContent.addEventListener('click', function(event) {
             });
         });
     }
+    arrastaESoltaTarefas()
 });
 
-// arrasta e solta
+// arrasta e solta tarefas
+function arrastaESoltaTarefas() {
+    const colunas = document.querySelectorAll('.task-column')
+
+    document.addEventListener('dragstart', (e) => {
+        e.target.classList.add('dragging')
+    })
+    document.addEventListener('dragend', (e) => {
+        e.target.classList.remove('dragging')
+    })
+    
+    colunas.forEach((item) => {
+        item.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            const dragging = document.querySelector('.dragging');
+            const applyAfter = getNewPosition(item, e.clientY);
+    
+            if (applyAfter) {
+                applyAfter.insertAdjacentElement('afterend', dragging);
+            } else {
+                item.querySelector('.task-column-all-tasks').prepend(dragging);
+            }
+        });
+    });
+    
+    function getNewPosition(colunas, posY) {
+        const cards = colunas.querySelectorAll('.task-column-task:not(.dragging)');
+        let result = null;
+        for (let refer_card of cards){
+            const box = refer_card.getBoundingClientRect();
+            const boxCenterY = box.y + box.height / 2;
+            if (posY >= boxCenterY) result = refer_card;
+        }
+        return result;
+    }
+}
+arrastaESoltaTarefas()
 
