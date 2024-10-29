@@ -6,6 +6,11 @@ const adicioarLista = document.querySelector('.add-list-name div a')
 const allTasksContent = document.querySelector('.all-tasks-content'); 
 const addListContainer = document.querySelector('.add-list');
 
+
+//dados
+let idCounterLista = 1;
+
+
 // exibe o botão para dar nome à nova lista
 botaoAdicionarOutraLista.addEventListener('click', () => {
     botaoAdicionarOutraLista.classList.add('desativo')
@@ -36,6 +41,8 @@ adicioarLista.addEventListener('click', (event) => {
     const novaLista = document.createElement('div');
     novaLista.classList.add('task-column');
     novaLista.setAttribute('draggable', 'true');
+    novaLista.setAttribute('id', `00${idCounterLista}`);
+    idCounterLista++;
     novaLista.innerHTML = `
         <div class="task-column-content">
             <div class="task-column-name">
@@ -68,7 +75,6 @@ adicioarLista.addEventListener('click', (event) => {
     allTasksContent.appendChild(addListContainer);
     formNomeLista.focus()
     formNomeLista.value = ""; // Limpa o textarea
-    
 });
 
 // Delegação de eventos para adicionar tarefas nas colunas existentes ou novas
@@ -176,6 +182,13 @@ function arrastaESoltaTarefas() {
 }
 arrastaESoltaTarefas()
 
+// atualiza os ids quando mudamos a ordem das listas
+function atualizaIdsColunas() {
+    const colunas = document.querySelectorAll('.task-column');
+    colunas.forEach((coluna, index) => {
+        coluna.setAttribute('id', `00${index + 1}`);
+    });
+}
 // arrasta e solta listas
 function arrastaESoltaListas() {
     const todasAsListas = document.querySelectorAll('.task-column')
@@ -189,6 +202,7 @@ function arrastaESoltaListas() {
     document.addEventListener('dragend', (e) => {
         if (e.target.classList.contains('task-column')) {
             e.target.classList.remove('dragging-lista')
+            atualizaIdsColunas();
         }
     })
 
