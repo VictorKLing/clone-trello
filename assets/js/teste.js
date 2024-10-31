@@ -8,8 +8,8 @@ const addListContainer = document.querySelector('.add-list');
 
 
 //dados
-let idCounterLista = 1;
-let idCounterTask = 1;
+let idCounter = 1;
+
 
 // exibe o botão para dar nome à nova lista
 botaoAdicionarOutraLista.addEventListener('click', () => {
@@ -35,7 +35,9 @@ botaoFecharNomeLista.addEventListener('click', () => {
 
 //pega o maior id das listas
 
-
+const idsListas = JSON.parse(localStorage.getItem('id_listas'));
+const maxIdNumber = Math.max(...idsListas)
+console.log('o maior numero é ' + maxIdNumber);
 
 // cria uma nova lista
 function criarNovaLista(event) {
@@ -43,9 +45,8 @@ function criarNovaLista(event) {
     const novaLista = document.createElement('div');
     novaLista.classList.add('task-column');
     novaLista.setAttribute('draggable', 'true');
-    novaLista.setAttribute('data-id', `00${idCounterLista}`);
-    idCounterLista++;
-    
+    novaLista.setAttribute('data-id', `00${idCounter}`);
+    idCounter++;
     novaLista.innerHTML = `
         <div class="task-column-content">
             <div class="task-column-name">
@@ -93,8 +94,6 @@ function criarNovaLista(event) {
 }
 adicioarLista.addEventListener('click', criarNovaLista)
 // cria a quantidade certa de listas baseada no maior id no localstorage
-const idsListas = JSON.parse(localStorage.getItem('id_listas')) || [];
-const maxIdNumber = idsListas.length > 0 ? Math.max(...idsListas) : 0;
 window.addEventListener('load', () => {
     for (let i = 0; i < maxIdNumber; i++) {
         const event = new Event('submit'); //evento fictício
